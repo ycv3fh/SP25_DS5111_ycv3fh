@@ -19,11 +19,11 @@ When prompted to chose a file location, press Enter to accept the default locati
 
 Then it will ask for a passphrase, and pressing enter will bypass this step.
 
-##Add the SSH key
+## Add the SSH key
 This will then be used to add the SSH key to the agent.
 $ssh-add ~/.ssh/id_ed25519
 
-##Add SSH key to github
+## Add SSH key to github
 To display the key, 
 $cat ~/.ssh/id_ed25519.pub
 
