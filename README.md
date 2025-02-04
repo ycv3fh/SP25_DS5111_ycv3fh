@@ -98,3 +98,32 @@ pip install -r requirements.txt
 ```
 
 ## Set up your virtual environment with make update
+To initilize the virtual environment, run
+```bash
+make update
+```
+and this will run the makefile.txt that will create the the virtual environment and install the dependencies from requirements. txt
+
+## Test the headless browser by running job in makefile
+Run the headless browser using 
+```bash
+make ygainers.csv
+```
+and this should run the headless browser, get the example.com, and save the output to a text file named "test_output.html"
+To open and view the contents of the file, run
+```bash
+cat test_output.html
+```
+
+To view the project's structure, run
+```bash
+tree project_repo -I env
+```
+The output should like like this:
+```bash
+your-project-repo
+├── install_chrome.sh
+├── Makefile
+├── requirements.txt
+├── test_output.html
+```
