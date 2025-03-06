@@ -127,3 +127,8 @@ your-project-repo
 ├── requirements.txt
 ├── test_output.html
 ```
+## Github Action
+
+![Build Status](https://github.com/ycv3fh/SP25_DS5111_ycv3fh/actions/workflows/validations.yml/badge.svg)
+
+
