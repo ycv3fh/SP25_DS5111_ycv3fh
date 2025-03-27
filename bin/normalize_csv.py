@@ -7,22 +7,21 @@ This module contains a function to normalize stock data CSV files.
 import os
 import pandas as pd
 
-def normalize_csv(input_csv_path):
+def normalize_csv(input_path):
     """
     Reads a raw stock data CSV file, normalizes it to the expected format,
     and writes the transformed data to a new CSV file with `_norm` appended to the filename.
     """
-    assert isinstance(input_csv_path, str) and input_csv_path.endswith('.csv'), "Invalid file path"
+    assert isinstance(input_path, str) and input_path.endswith('.csv'), "Invalid file path"
 
     # The columns specified to keep
     headers = ['symbol','price','price_change','price_percent_change']
     # read in the csv file
-    dataframe = pd.read_csv(input_csv_path)
+    df = pd.read_csv(input_path)
     # Only keep columns in dataframe that match with columns specified in headers
-    dataframe = dataframe[[col for col in headers if col in dataframe.columns]]
+    df = df[[col for col in headers if col in df.columns]]
     # Save normaized csv file under new file name
-    output_csv_path = os.path.splitext(input_csv_path)[0] + "_norm" + os.path.splitext(input_csv_path)[1]
-    dataframe.to_csv(output_csv_path, index=False)
-    assert os.path.exists(output_csv_path), "Output CSV file was not created successfully"
-
-    return output_csv_path
+    output_path = os.path.splitext(input_path)[0]+"_norm"+os.path.splitext(input_path)[1]
+    assert os.path.exists(output_path), "Output CSV file was not created successfully"
+    # Returns normalized csv file
+    return output_path
