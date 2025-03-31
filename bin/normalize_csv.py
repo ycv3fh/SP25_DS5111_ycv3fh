@@ -20,8 +20,8 @@ def normalize_csv(input_path):
     df = pd.read_csv(input_path)
     # Only keep columns in dataframe that match with columns specified in headers
     df = df[[col for col in headers if col in df.columns]]
-    # Save normaized csv file under new file name
+    # Save normalized csv file under new file name
     output_path = os.path.splitext(input_path)[0]+"_norm"+os.path.splitext(input_path)[1]
-    assert os.path.exists(output_path), "Output CSV file was not created successfully"
+    df.to_csv(output_path,index=False)
     # Returns normalized csv file
     return output_path
