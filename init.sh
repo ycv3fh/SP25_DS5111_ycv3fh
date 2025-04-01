@@ -1,5 +1,15 @@
 # Update package list
-sudo apt update
-# Install required packages
-sudo apt install -y make python3.12-venv tree
+echo "Updating package list..."
+sudo apt update -y
 
+# Install required packages
+echo "Installing make..."
+sudo apt install make -y
+
+echo "Installing Python 3.12 venv..."
+sudo apt install python3.12-venv -y
+
+echo "Installing tree..."
+sudo apt install tree -y
+
+echo "Setup complete!"
