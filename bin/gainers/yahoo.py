@@ -12,6 +12,10 @@ class GainerDownloadYahoo(GainerDownload):
         super().__init__()
 
     def download(self):
+        # you can move your bash execution line here.
+        # use the os system call to execute something at the command line
+        # import os
+        # os.system("< same command we use in the makefile >")
         print("Downloading Yahoo gainers")
 
 class GainerProcessYahoo(GainerProcess):
