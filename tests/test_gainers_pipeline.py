@@ -1,3 +1,5 @@
+import sys
+sys.path.append('.')
 from bin.gainers.yahoo import get_yahoo_gainers
 from bin.gainers.wsj import get_wsj_gainers
 from bin.normalize_csv import normalize_csv
