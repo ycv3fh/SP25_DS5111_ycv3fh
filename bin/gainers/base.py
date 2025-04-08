@@ -10,6 +10,9 @@ from abc import ABC, abstractmethod
 
 # Downloader Base Class
 class GainerDownload(ABC):
+    """
+    An absract base class for downloading gainer data from various sources.
+    """
     def __init__(self):
         self.url = None  # Placeholder for actual URLs
 
@@ -19,6 +22,9 @@ class GainerDownload(ABC):
 
 # Processor Base Class
 class GainerProcess(ABC):
+    """
+    An abstract base class for processing gainer data
+    """
     def __init__(self):
         pass
 

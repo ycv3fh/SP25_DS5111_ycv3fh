@@ -21,9 +21,15 @@ class GainerDownloadYahoo(GainerDownload):
 class GainerProcessYahoo(GainerProcess):
     def __init__(self):
         super().__init__()
+        self.input_file = input_file
+        self.normalized_file = None
 
     def normalize(self):
+        self.normalized_file = normalize_csv(self.input_file)
         print("Normalizing Yahoo gainers")
 
     def save_with_timestamp(self):
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        new_filename = f"wsj_gainers_{timestamp}.csv"
+        os.rename(self.normalized_file, new_filename)
         print("Saving Yahoo gainers")
