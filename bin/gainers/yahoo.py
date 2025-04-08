@@ -5,6 +5,7 @@ Classes:
     GainerDownloadYahoo (Yahoo-specific implementation of GainerDownload)
     GainerProcessYahoo (Yahoo-specific implementation of GainerProcess)
 '''
+import os
 from .base import GainerDownload, GainerProcess
 
 class GainerDownloadYahoo(GainerDownload):
@@ -12,10 +13,7 @@ class GainerDownloadYahoo(GainerDownload):
         super().__init__()
 
     def download(self):
-        # you can move your bash execution line here.
-        # use the os system call to execute something at the command line
-        # import os
-        # os.system("< same command we use in the makefile >")
+        os.system("make ygainers.csv")
         print("Downloading Yahoo gainers")
 
 class GainerProcessYahoo(GainerProcess):

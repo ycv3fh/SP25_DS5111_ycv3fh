@@ -10,7 +10,7 @@ from .wsj import GainerDownloadWSJ, GainerProcessWSJ
 
 class GainerFactory:
     '''
-    Factory class return sthe appropriate downloader and processor based on the gainer choice
+    Factory class return the appropriate downloader and processor based on the gainer choice
     '''
     def __init__(self, choice):
         assert choice in ['yahoo', 'wsj'], f"Unrecognized gainer type {choice}"
