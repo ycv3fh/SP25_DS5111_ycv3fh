@@ -1,12 +1,17 @@
+
+import pandas as pd
 import sys
 sys.path.append('.')
-from bin.gainers.yahoo import get_yahoo_gainers
-from bin.gainers.wsj import get_wsj_gainers
+from bin.gainers.yahoo import GainerDownloadYahoo
+from bin.gainers.wsj import GainerDownloadWSJ
 from bin.normalize_csv import normalize_csv
 
 def test_pipeline_yahoo_data():
 
-    raw_file = get_yahoo_gainers()
+    downloader = GainerDownloadYahoo()
+    downloader.download()
+
+    raw_file = "ygainers.csv" 
     normalized_file = normalize_csv(raw_file)
 
     df = pd.read_csv(normalized_file)
@@ -19,7 +24,10 @@ def test_pipeline_yahoo_data():
 
 def test_pipeline_wsj_data():
 
-    raw_file = get_wsj_gainers()
+    downloader = GainerDownloadWSJ()
+    downloader.download()
+
+    raw_file = "wgainers.csv"
     normalized_file = normalize_csv(raw_file)
 
     df = pd.read_csv(normalized_file)

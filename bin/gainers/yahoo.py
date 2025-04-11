@@ -7,6 +7,7 @@ Classes:
 '''
 import os
 from .base import GainerDownload, GainerProcess
+from ..normalize_csv import normalize_csv
 
 class GainerDownloadYahoo(GainerDownload):
     def __init__(self):
