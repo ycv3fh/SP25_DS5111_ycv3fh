@@ -5,6 +5,7 @@ import pandas as pd
 import os
 
 def test_normalize_csv():
+
     input = 'tests/data/test_data.csv'
     #run sample data into normalize_csv function
     output_file = bin.normalize_csv.normalize_csv(input)
