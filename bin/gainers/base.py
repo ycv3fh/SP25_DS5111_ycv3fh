@@ -8,31 +8,34 @@ Contains:
 
 from abc import ABC, abstractmethod
 
-# Downloader Base Class
-class GainerDownload(ABC):
-    """
-    An absract base class for downloading gainer data from various sources.
-    """
-    def __init__(self):
-        self.url = None  # Placeholder for actual URLs
-
-    @abstractmethod
-    def download(self):
-        pass
-
 # Processor Base Class
 class GainerProcess(ABC):
     """
     An abstract base class for processing gainer data
     """
+    def __init__(self,gainer_downloader,gainer_normalizer):
+        self.downloader = gainer_downloader
+        self.normalizer = gainer_normalizer
+
+    def _download(self):
+        self.downloader.download()
+
+    def _normalize(self):
+        self.normalizer.normalize()
+
+    def _save_to_file(self):
+        self.normalizer.save_with_timestamp()
+
+    def process(self):
+        self._download()
+        self._normalize()
+        self._save_to_file()
+
+class GainerDownload(ABC):
+
     def __init__(self):
         pass
 
     @abstractmethod
-    def normalize(self):
+    def download(self):
         pass
-
-    @abstractmethod
-    def save_with_timestamp(self):
-        pass
-

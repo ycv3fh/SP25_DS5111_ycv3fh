@@ -5,40 +5,18 @@ It takes user input, selects the appropriate factory-generated classes, and runs
 
 import sys
 from bin.gainers.factory import GainerFactory
+from bin.gainers.base import ProcessGainer
 
-# TEMPLATE
-class ProcessGainer:
-    def __init__(self, gainer_downloader, gainer_normalizer):
-        self.downloader = gainer_downloader
-        self.normalizer = gainer_normalizer
+# Make our selection, 'one' choice
+choice = sys.argv[1]
 
-    def _download(self):
-        self.downloader.download()
+# let our factory get select the family of objects for processing
+factory = GainerFactory(choice)
+downloader = factory.get_downloader()
+normalizer = factory.get_processor()
 
-    def _normalize(self):
-        self.normalizer.normalize()
+# create our process
+runner = ProcessGainer(downloader, normalizer)
+runner.process()
 
-    def _save_to_file(self):
-        self.normalizer.save_with_timestamp()
 
-    def process(self):
-        self._download()
-        self._normalize()
-        self._save_to_file()
-
-if __name__ == "__main__":
-    # Ensure the user provides a choice
-    if len(sys.argv) < 2:
-        print("Usage: python get_gainer.py [yahoo|wsj]")
-        sys.exit(1)
-
-    choice = sys.argv[1]
-    factory = GainerFactory(choice)
-
-    # Get appropriate downloader and processor
-    downloader = factory.get_downloader()
-    normalizer = factory.get_processor()
-
-    # Process gainers
-    runner = ProcessGainer(downloader, normalizer)
-    runner.process()
