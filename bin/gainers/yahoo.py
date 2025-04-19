@@ -7,6 +7,7 @@ Classes:
 '''
 import os
 from .base import GainerDownload, GainerProcess
+<<<<<<< HEAD
 import datetime
 
 class GainerDownloadYahoo(GainerDownload):
@@ -55,6 +56,28 @@ class GainerProcessYahoo(GainerProcess):
 
     def save_with_timestamp(self):
 
+=======
+
+class GainerDownloadYahoo(GainerDownload):
+    def __init__(self):
+        super().__init__()
+
+    def download(self):
+        os.system("make ygainers.csv")
+        print("Downloading Yahoo gainers")
+
+class GainerProcessYahoo(GainerProcess):
+    def __init__(self):
+        super().__init__()
+        self.input_file = input_file
+        self.normalized_file = None
+
+    def normalize(self):
+        self.normalized_file = normalize_csv(self.input_file)
+        print("Normalizing Yahoo gainers")
+
+    def save_with_timestamp(self):
+>>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         new_filename = f"wsj_gainers_{timestamp}.csv"
         os.rename(self.normalized_file, new_filename)

@@ -32,5 +32,9 @@ gainers:
             echo "SRC not set. Usage: make gainers SRC=<yahoo|wsj>"; \
             exit 1; \
         fi; \
+<<<<<<< HEAD
         . env/bin/activate;
 	python get_gainer.py $(SRC)
+=======
+	python bin/get_gainer.py $(SRC)
+>>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c

@@ -24,6 +24,12 @@ class GainerFactory:
 
     def get_processor(self):
         if self.choice == 'yahoo':
+<<<<<<< HEAD
             return GainerProcessYahoo(input_file="ygainers.csv")
         elif self.choice == 'wsj':
             return GainerProcessWSJ(input_file="wjsgainers.csv")
+=======
+            return GainerProcessYahoo()
+        elif self.choice == 'wsj':
+            return GainerProcessWSJ()
+>>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
