@@ -6,8 +6,9 @@ This module contains a function to normalize stock data CSV files.
 
 import os
 import pandas as pd
+import re
 
-def normalize_csv(input_path):
+def normalize_csv(input_path,source_type='yahoo'):
     """
     Reads a raw stock data CSV file, normalizes it to the expected format,
     and writes the transformed data to a new CSV file with `_norm` appended to the filename.
