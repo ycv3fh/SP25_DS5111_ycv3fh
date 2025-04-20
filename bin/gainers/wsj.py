@@ -6,21 +6,17 @@ Classes:
     GainerProcessWSJ (WSJ-specific implementation of GainerProcess)
 '''
 import os
-<<<<<<< HEAD
 #if doesnt import then try with "bin.gainers.base import GainerDownload, GainerProcess"
 from .base import GainerDownload, GainerProcess
 import datetime
-=======
 from .base import GainerDownload, GainerProcess
 from .normalize_csv import normalize_csv
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
 
 class GainerDownloadWSJ(GainerDownload):
     '''
     Handles the downloading the list of gainers from the WSJ
     '''
     def __init__(self):
-<<<<<<< HEAD
         #super().__init__()
         pass
 
@@ -31,20 +27,13 @@ class GainerDownloadWSJ(GainerDownload):
         command_2 = '''python -c "import pandas as pd; raw = pd.read_html('wsjgainers.html'); \
  raw[0].to_csv('wsjgainers.csv')"'''
         os.system(command_2)
-=======
         super().__init__()
-
-    def download(self):
-	os.system("make wsj.csv")
-        print("Downloading WSJ gainers")
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
 
 class GainerProcessWSJ(GainerProcess):
     '''
     Normalizes and saves the WSJ gainer data
     '''
     def __init__(self,data):
-<<<<<<< HEAD
         pass
 
     def normalize(self):
@@ -78,19 +67,5 @@ class GainerProcessWSJ(GainerProcess):
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H$M%S")
         new_filename = f"bin/gainers/data/wsj_gainers_{timestamp}.csv"
         os.rename(self.normalized_file, new_filename)
-=======
-        super().__init__()
-        self.raw_data = raw_data
-        self.norm_data = None
-
-    def normalize(self):
-        self.normalized_file = normalize_csv(self.raw_data)
-        print("Normalizing WSJ gainers")
-
-    def save_with_timestamp(self):
-	timestamp = datetime.datetime.now().strftime("%Y%m%d_%H$M%S")
-	new_filename = f"wsj_gainers_{timestamp}.csv"
-	os.rename(self.normalized_file, new_filename)
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
         print("Saving WSJ gainers")
 
