@@ -37,7 +37,7 @@ class GainerProcessYahoo(GainerProcess):
         }
 
         # read in the csv file
-        df = pd.read_csv(self,input_file)
+        df = pd.read_csv(self.input_file)
         # Rename columns based on the mapping
         df = df.rename(columns=column_mapping)
         # Only keep columns in dataframe that match with columns specified in headers
