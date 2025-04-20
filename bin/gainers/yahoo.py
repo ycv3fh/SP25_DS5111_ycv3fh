@@ -50,14 +50,9 @@ class GainerProcessYahoo(GainerProcess):
                 .astype(float)
             )
 
-        # Normalize volume if present
-        if 'volume' in df.columns:
-        # If volume is in millions or billions, convert to the base unit
-            df['volume'] = df['volume'].replace({
-                r'M': '*1e6',  # Million
-                r'B': '*1e9',  # Billion
-            }, regex=True)
-            df['volume'] = df['volume'].map(pd.eval).astype(float)
+        df['volume'] = df['volume'].replace({'-': None})
+        df['volume'] = df['volume'].str.replace(',', '', regex=False)
+        df['volume'] = pd.to_numeric(df['volume'], errors='coerce')
 
         self.normalized_file = "normalized_temp.csv"
         df.to_csv(self.normalized_file,index=False)
