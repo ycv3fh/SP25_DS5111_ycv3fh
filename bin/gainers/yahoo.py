@@ -6,6 +6,7 @@ Classes:
     GainerProcessYahoo (Yahoo-specific implementation of GainerProcess)
 '''
 import os
+import padas as pd
 from .base import GainerDownload, GainerProcess
 import datetime
 
