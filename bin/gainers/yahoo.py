@@ -22,11 +22,10 @@ class GainerDownloadYahoo(GainerDownload):
         os.system(command_2)
 
 class GainerProcessYahoo(GainerProcess):
-
-    def __init__(self,input_file):
+    def __init__(self, input_file):
         self.input_file = input_file
         self.normalized_file = None
-        super().__init__(gainer_downloader=None, gainer_normalizer=self)
+        super().__init__(input_file)
 
     def normalize(self):
         column_mapping = {
