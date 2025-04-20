@@ -5,7 +5,6 @@ Contains:
     GainerDownload (Abstract base class for downloading gainers)
     GainerProcess (Abstract base class for processing gainers)
 '''
-
 from abc import ABC, abstractmethod
 
 # Downloader Base Class
@@ -25,22 +24,14 @@ class GainerProcess(ABC):
     """
     An abstract base class for processing gainer data
     """
-    def __init__(self,gainer_downloader,gainer_normalizer):
-        self.downloader = gainer_downloader
-        self.normalizer = gainer_normalizer
+    def __init__(self):
+        pass
 
-    def _download(self):
-        self.downloader.download()
+    @abstractmethod
+    def normalize(self):
+        pass
 
-    def _normalize(self):
-        self.normalizer.normalize()
-
-    def _save_to_file(self):
-        self.normalizer.save_with_timestamp()
-
-    def process(self):
-        self._download()
-        self._normalize()
-        self._save_to_file()
-
+    @abstractmethod
+    def save_with_timestamp(self):
+        pass
 
