@@ -28,25 +28,37 @@ class GainerProcessYahoo(GainerProcess):
         super().__init__()
 
     def normalize(self):
+        df = pd.read_csv(self.input_file)
         column_mapping = {
         'Symbol': 'symbol',
         'Price': 'price',
         'Change': 'price_change',
-        'Change %': 'price_percent_change'
+        'Change %': 'price_percent_change',
+        'Volume': 'volume'
         }
 
-        # read in the csv file
-        df = pd.read_csv(self.input_file)
-        # Rename columns based on the mapping
         df = df.rename(columns=column_mapping)
-        # Only keep columns in dataframe that match with columns specified in headers
-        df = df[[new_col for new_col in column_mapping.values() if new_col in df.columns]]
-        #Convert the file from object datatype to float datatype
-        df['price_percent_change'] = (
-            df['price_percent_change']
-            .replace('%', '', regex=True)
-            .astype(float)
-        )
+
+        # Only keep the relevant columns
+        df = df[['symbol', 'price', 'price_change', 'price_percent_change', 'volume']]
+
+        # Normalize 'price_percent_change' column
+        if 'price_percent_change' in df.columns:
+            df['price_percent_change'] = (
+                df['price_percent_change']
+                .replace('%', '', regex=True)
+                .astype(float)
+            )
+
+        # Normalize volume if present
+        if 'volume' in df.columns:
+        # If volume is in millions or billions, convert to the base unit
+        df['volume'] = df['volume'].replace({
+            r'M': '*1e6',  # Million
+            r'B': '*1e9',  # Billion
+        }, regex=True)
+        df['volume'] = df['volume'].map(pd.eval).astype(float)
+
         self.normalized_file = "normalized_temp.csv"
         df.to_csv(self.normalized_file,index=False)
 
