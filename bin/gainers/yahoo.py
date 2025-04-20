@@ -10,9 +10,9 @@ from .base import GainerDownload, GainerProcess
 import datetime
 
 class GainerDownloadYahoo(GainerDownload):
-    def __init__(self):
-        #super().__init__()
-        pass
+    def __init__(self,input_file):
+        self.input_file = input_file
+        super().__init__(gainer_downloader=None, gainer_normalizer=self)
 
     def download(self):
         command = '''sudo google-chrome-stable --headless --disable-gpu --dump-dom \
