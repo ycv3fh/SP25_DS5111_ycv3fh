@@ -8,8 +8,6 @@ Contains:
 
 from abc import ABC, abstractmethod
 
-<<<<<<< HEAD
-=======
 # Downloader Base Class
 class GainerDownload(ABC):
     """
@@ -22,13 +20,11 @@ class GainerDownload(ABC):
     def download(self):
         pass
 
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
 # Processor Base Class
 class GainerProcess(ABC):
     """
     An abstract base class for processing gainer data
     """
-<<<<<<< HEAD
     def __init__(self,gainer_downloader,gainer_normalizer):
         self.downloader = gainer_downloader
         self.normalizer = gainer_normalizer
@@ -47,23 +43,4 @@ class GainerProcess(ABC):
         self._normalize()
         self._save_to_file()
 
-class GainerDownload(ABC):
 
-=======
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
-    def __init__(self):
-        pass
-
-    @abstractmethod
-<<<<<<< HEAD
-    def download(self):
-        pass
-=======
-    def normalize(self):
-        pass
-
-    @abstractmethod
-    def save_with_timestamp(self):
-        pass
-
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
