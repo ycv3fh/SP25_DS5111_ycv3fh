@@ -28,5 +28,5 @@ wjsgainers.csv: wjsgainers.html
 	python -c "import pandas as pd; raw = pd.read_html('wjsgainers.html'); raw[0].to_csv('wjsgainers.csv')"
 
 gainers:
-        . env/bin/activate;
+	. env/bin/activate;
 	python bin/get_gainer.py $(SRC)
