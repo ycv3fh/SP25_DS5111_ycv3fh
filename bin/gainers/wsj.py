@@ -11,7 +11,6 @@ import pandas as pd
 from .base import GainerDownload, GainerProcess
 import datetime
 from .base import GainerDownload, GainerProcess
-from .normalize_csv import normalize_csv
 
 class GainerDownloadWSJ(GainerDownload):
     '''
