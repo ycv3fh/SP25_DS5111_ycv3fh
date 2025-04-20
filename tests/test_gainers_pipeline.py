@@ -1,46 +1,51 @@
-import pandas as pd
+import os
 import sys
+import glob
+import pandas as pd
+# Ensure path includes local package
 sys.path.append('.')
-from bin.gainers.yahoo import GainerDownloadYahoo
-from bin.gainers.wsj import GainerDownloadWSJ
+from bin.gainers.factory import GainerFactory
+
+#from bin.gainers.wsj import GainerDownloadWSJ
 
 def test_yahoo_pipeline():
+    print("Running WSJ pipeline test...")
+    factory = GainerFactory("yahoo")
+    downloader = factory.get_downloader()
+    normalizer = factory.get_processor()
 
-    # Create Yahoo-specific processor using your factory
-    print("Initializing Yahoo gainer processor...")
-    x = factory.GainerFactory("yahoo")
-
-    print("Getting downloader...")
-    downloader = x.get_downloader()
-    downloader.download()  # This should create ygainers.csv
-
-    raw_file = "ygainers.csv"
-    assert os.path.exists(raw_file), "Download failed: raw file not found."
-
-    print("Getting normalizer...")
-    normalizer = x.get_normalizer()
-    normalizer.input_file = raw_file  # if needed, set file path
-
-    print("Running normalization...")
-    normalizer.normalize()
-
-    # Save normalized file (and assume it sets the filename internally)
-    normalizer.save_with_timestamp()
-    normalized_file = normalizer.normalized_file
-    assert os.path.exists(normalized_file), "Normalized file not saved."
-
-def test_wsj_pipeline():
-
-    downloader = GainerDownloadWSJ()
     downloader.download()
 
-    raw_file = "wgainers.csv"
-    raw_file = get_yahoo_gainers()
-    normalized_file = normalize_csv(raw_file)
+    assert os.path.exists("ygainers.csv"), "Download failed: raw file not found."
 
-    df = pd.read_csv(normalized_file)
+    normalizer.normalize()
+    normalizer.save_with_timestamp()
 
-    # Basic checks
+    saved_files = glob.glob("yahoo_gainers_*.csv")
+    assert saved_files, "No Yahoo gainer file saved with timestamp."
+
+    df = pd.read_csv(saved_files[-1])
+    assert not df.empty, "Yahoo normalized DataFrame is empty."
+    assert "symbol" in df.columns
+    assert "price_percent_change" in df.columns
+    assert df["price_percent_change"].dtype in [float, "float64"]
+
+def test_wsj_pipeline():
+    print("Running WSJ pipeline test...")
+    factory = GainerFactory("wsj")
+    downloader = factory.get_downloader()
+    normalizer = factory.get_processor()
+
+    downloader.download()
+
+    assert os.path.exists("wsjgainers.csv"), "Raw WSJ gainer file not found."
+
+    normalizer.normalize()
+    normalizer.save_with_timestamp()
+
+    saved_files = glob.glob("bin/gainers/data/wsj_gainers_*.csv")
+    assert saved_files, "No WSJ gainer file saved with timestamp."
+
     assert not df.empty
     assert 'symbol' in df.columns
     assert 'price_percent_change' in df.columns
