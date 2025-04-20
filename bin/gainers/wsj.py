@@ -35,7 +35,7 @@ class GainerProcessWSJ(GainerProcess):
     def __init__(self, input_file):
         self.input_file = input_file
         self.normalized_file = None
-        super().__init__(input_file)
+        super().__init__()
 
     def normalize(self):
         column_mapping = {
