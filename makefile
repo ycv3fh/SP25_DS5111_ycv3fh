@@ -11,7 +11,7 @@ lint: env
 	. env/bin/activate; pylint bin/normalize_csv.py
 
 test: lint
-	pytest -vv tests
+	. env/bin/activate && pytest -vv tests
 
 ygainers.html:
 	sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox \
