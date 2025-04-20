@@ -61,7 +61,7 @@ class GainerProcessWSJ(GainerProcess):
         df.to_csv(self.normalized_file,index=False)
 
     def save_with_timestamp(self):
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H$M%S")
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         new_filename = f"bin/gainers/data/wsj_gainers_{timestamp}.csv"
         os.rename(self.normalized_file, new_filename)
         print("Saving WSJ gainers")
