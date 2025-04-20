@@ -31,7 +31,6 @@ def normalize_csv(input_path):
     # Only keep columns in dataframe that match with columns specified in headers
     df = df[[new_col for new_col in column_mapping.values() if new_col in df.columns]]
 
-<<<<<<< HEAD
     #Convert the file from object datatype to float datatype
     df['price_percent_change'] = (
         df['price_percent_change']
@@ -39,8 +38,6 @@ def normalize_csv(input_path):
         .astype(float)
         )
 
-=======
->>>>>>> fa44f416df49de1a81d577f446138af5685a2c8c
     # Save normalized csv file under new file name
     output_path = os.path.splitext(input_path)[0]+"_norm"+os.path.splitext(input_path)[1]
     df.to_csv(output_path,index=False)
