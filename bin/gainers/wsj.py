@@ -42,18 +42,17 @@ class GainerProcessWSJ(GainerProcess):
 
         # Define the column mapping
         column_mapping = {
-            'Symbol': 'symbol',
-            'Price': 'price',
-            'Change': 'price_change',
-            'Change %': 'price_percent_change',
-            'Volume': 'volume'
+            'LAST': 'price',
+            'CHG': 'price_change',
+            '% CHG': 'price_percent_change',
+            'VOLUME': 'volume'
         }
 
         # Rename the columns according to the mapping
         df = df.rename(columns=column_mapping)
 
         # Keep only the relevant columns
-        df = df[['symbol', 'price', 'price_change', 'price_percent_change', 'volume']]
+        df = df[['NAME', 'price', 'price_change', 'price_percent_change', 'volume']]
 
         # Normalize 'price_percent_change' column (convert to float)
         if 'price_percent_change' in df.columns:
