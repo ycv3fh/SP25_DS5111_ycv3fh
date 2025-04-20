@@ -16,9 +16,9 @@ class GainerDownloadWSJ(GainerDownload):
     '''
     Handles the downloading the list of gainers from the WSJ
     '''
-    def __init__(self):
-        #super().__init__()
-        pass
+    def __init__(self,input_file):
+        self.input_file = input_file
+        super().__init__(gainer_downloader=None, gainer_normalizer=self)
 
     def download(self):
         command = '''sudo google-chrome-stable --headless --disable-gpu --dump-dom \
@@ -44,16 +44,12 @@ class GainerProcessWSJ(GainerProcess):
         'Change': 'price_change',
         'Change %': 'price_percent_change'
         }
-
         # read in the csv file
-        df = pd.read_csv(self)
-
+        df = pd.read_csv(self.input_file)
         # Rename columns based on the mapping
         df = df.rename(columns=column_mapping)
-
         # Only keep columns in dataframe that match with columns specified in headers
         df = df[[new_col for new_col in column_mapping.values() if new_col in df.columns]]
-
         #Convert the file from object datatype to float datatype
         df['price_percent_change'] = (
             df['price_percent_change']
