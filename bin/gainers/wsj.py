@@ -6,6 +6,7 @@ Classes:
     GainerProcessWSJ (WSJ-specific implementation of GainerProcess)
 '''
 import os
+import pandas as pd
 #if doesnt import then try with "bin.gainers.base import GainerDownload, GainerProcess"
 from .base import GainerDownload, GainerProcess
 import datetime
@@ -17,8 +18,7 @@ class GainerDownloadWSJ(GainerDownload):
     Handles the downloading the list of gainers from the WSJ
     '''
     def __init__(self,input_file):
-        self.input_file = input_file
-        super().__init__(gainer_downloader=None, gainer_normalizer=self)
+        pass
 
     def download(self):
         command = '''sudo google-chrome-stable --headless --disable-gpu --dump-dom \
@@ -33,11 +33,12 @@ class GainerProcessWSJ(GainerProcess):
     '''
     Normalizes and saves the WSJ gainer data
     '''
-    def __init__(self,data):
-        pass
+    def __init__(self,input_file):
+        self.input_file = input_file
+        self.normalized_file = None
+        super().__init__(gainer_downloader=None, gainer_normalizer=self)
 
     def normalize(self):
-        #copy/paste normalizer_csv
         column_mapping = {
         'Symbol': 'symbol',
         'Price': 'price',
@@ -56,8 +57,8 @@ class GainerProcessWSJ(GainerProcess):
             .replace('%', '', regex=True)
             .astype(float)
         )
-        output_path = "normalized_temp.csv"
-        df.to_csv(output_path,index=False)
+        self.normalized_file = "normalized_temp.csv"
+        df.to_csv(self.normalized_file,index=False)
 
     def save_with_timestamp(self):
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H$M%S")
