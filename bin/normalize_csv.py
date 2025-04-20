@@ -5,8 +5,8 @@ This module contains a function to normalize stock data CSV files.
 """
 
 import os
-import pandas as pd
 import re
+import pandas as pd
 
 def normalize_csv(input_path,source_type='yahoo'):
     """
@@ -44,7 +44,8 @@ def normalize_csv(input_path,source_type='yahoo'):
 
     # Extract ticker abbreviation from 'Name' for WSJ
     if source_type == 'wsj' and 'symbol' in df.columns:
-        df['symbol'] = df['symbol'].apply(lambda x: re.search(r'\((\w+)\)', str(x)).group(1) if isinstance(x, str) and '(' in x else x)
+        df['symbol'] = df['symbol'].apply(lambda x: re.search(r'\((\w+)\)', \
+                       str(x)).group(1) if isinstance(x, str) and '(' in x else x)
 
     # Only keep columns in dataframe that match with columns specified in the mapping
     df = df[[new_col for new_col in mapping.values() if new_col in df.columns]]
