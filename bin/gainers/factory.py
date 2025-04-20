@@ -26,4 +26,4 @@ class GainerFactory:
         if self.choice == 'yahoo':
             return GainerProcessYahoo(input_file="ygainers.csv")
         elif self.choice == 'wsj':
-            return GainerProcessWSJ(input_file="wjsgainers.csv")
+            return GainerProcessWSJ(input_file="wsjgainers.csv")

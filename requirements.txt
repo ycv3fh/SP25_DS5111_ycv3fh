@@ -3,4 +3,5 @@ lxml
 html5lib
 pylint
 pytest
+beautifulsoup4
 # would be good if we could lock these down with version numbers
