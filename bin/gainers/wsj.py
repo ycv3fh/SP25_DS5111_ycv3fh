@@ -17,7 +17,7 @@ class GainerDownloadWSJ(GainerDownload):
     '''
     Handles the downloading the list of gainers from the WSJ
     '''
-    def __init__(self,input_file):
+    def __init__(self):
         pass
 
     def download(self):

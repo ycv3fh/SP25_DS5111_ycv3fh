@@ -11,7 +11,7 @@ from .base import GainerDownload, GainerProcess
 import datetime
 
 class GainerDownloadYahoo(GainerDownload):
-    def __init__(self,input_file):
+    def __init__(self):
         pass
 
     def download(self):
@@ -23,7 +23,7 @@ class GainerDownloadYahoo(GainerDownload):
 
 class GainerProcessYahoo(GainerProcess):
 
-    def __init__(self):
+    def __init__(self,input_file):
         self.input_file = input_file
         self.normalized_file = None
         super().__init__(gainer_downloader=None, gainer_normalizer=self)
