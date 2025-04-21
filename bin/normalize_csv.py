@@ -32,6 +32,8 @@ def normalize_csv(input_path,source_type='yahoo'):
             '% Chg': 'price_percent_change'
         }
     }
+    df = pd.read_csv(input_path)
+
     # Apply appropriate mapping
     mapping = column_mappings[source_type]
     # Rename columns based on the mapping for the specific source

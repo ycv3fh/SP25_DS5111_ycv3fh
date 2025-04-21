@@ -40,27 +40,19 @@ class GainerProcessWSJ(GainerProcess):
     def normalize(self):
         df = pd.read_csv(self.input_file)
 
-        # Define the column mapping
         column_mapping = {
-            'LAST': 'price',
-            'CHG': 'price_change',
-            '% CHG': 'price_percent_change',
-            'VOLUME': 'volume'
+        'Unnamed: 0': 'index',
+        'Volume': 'volume',
+        'Last': 'price',
+        'Chg': 'price_change',
+        '% Chg': 'price_percent_change'
         }
-
         # Rename the columns according to the mapping
         df = df.rename(columns=column_mapping)
-
+        df.rename(columns={df.columns[1]: 'name'}, inplace=True)
         # Keep only the relevant columns
-        df = df[['NAME', 'price', 'price_change', 'price_percent_change', 'volume']]
-
-        # Normalize 'price_percent_change' column (convert to float)
-        if 'price_percent_change' in df.columns:
-            df['price_percent_change'] = (
-                df['price_percent_change']
-                .replace('%', '', regex=True)
-                .astype(float)
-            )
+        df = df[['name', 'price', 'price_change', 'price_percent_change', 'volume']]
+        df['price_percent_change'] = pd.to_numeric(df['price_percent_change'], errors='coerce')
 
         # Normalize volume if present
         if 'volume' in df.columns:
