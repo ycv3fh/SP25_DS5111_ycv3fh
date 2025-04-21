@@ -21,7 +21,7 @@ class GainerDownloadWSJ(GainerDownload):
 
     def download(self):
         command = '''sudo google-chrome-stable --headless --disable-gpu --dump-dom \
- --no-sandbox --timeout=5000 https://www.wsj.com/market-data/stocks/us/movers > wsjgainers.html'''
+ --no-sandbox --timeout=10000 https://www.wsj.com/market-data/stocks/us/movers > wsjgainers.html'''
         os.system(command)
         command_2 = '''python -c "import pandas as pd; raw = pd.read_html('wsjgainers.html'); \
  raw[0].to_csv('wsjgainers.csv')"'''

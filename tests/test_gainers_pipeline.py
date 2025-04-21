@@ -9,6 +9,7 @@ from bin.gainers.factory import GainerFactory
 #from bin.gainers.wsj import GainerDownloadWSJ
 
 def test_yahoo_pipeline():
+    #remove files before testing
     print("Running WSJ pipeline test...")
     factory = GainerFactory("yahoo")
     downloader = factory.get_downloader()
@@ -31,6 +32,7 @@ def test_yahoo_pipeline():
     assert df["price_percent_change"].dtype in [float, "float64"]
 
 def test_wsj_pipeline():
+    #remove files before running tests
     print("Running WSJ pipeline test...")
     factory = GainerFactory("wsj")
     downloader = factory.get_downloader()
@@ -50,4 +52,5 @@ def test_wsj_pipeline():
     assert 'symbol' in df.columns
     assert 'price_percent_change' in df.columns
     assert df['price_percent_change'].dtype == float
+
 
