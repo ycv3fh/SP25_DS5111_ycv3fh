@@ -40,15 +40,15 @@ def normalize_csv(input_path,source_type='yahoo'):
     df = df.rename(columns=mapping)
     # Extract symbol for WSJ from 'symbol' column
     if source_type == 'wsj':
-        df['symbol'] = df['symbol'].apply(lambda x: re.search(r'\((\w+)\)', str(x)).group(1)
-                                          if isinstance(x, str) and '(' in x else x)
+        df['symbol'] = df['symbol'].apply(
+            lambda x: re.search(r'\((\w+)\)', str(x)).group(1)
+            if isinstance(x, str) and '(' in x else x
+        )
+    df = df[[new_col for new_col in mapping.values() if new_col in df.columns]]
 
     # Normalize price_percent_change
     if 'price_percent_change' in df.columns:
         df['price_percent_change'] = df['price_percent_change'].replace('[%+]', '', regex=True).astype(float)
-
-    # Only keep columns in dataframe that match with columns specified in the mapping
-    df = df[[new_col for new_col in mapping.values() if new_col in df.columns]]
 
     # Normalize volume strings like "99.3M" or "314.2K"
     if 'volume' in df.columns:
@@ -57,13 +57,13 @@ def normalize_csv(input_path,source_type='yahoo'):
                 val = val.strip()
                 if val.endswith('M'):
                     return float(val[:-1]) * 1e6
-                elif val.endswith('B'):
+                if val.endswith('B'):
                     return float(val[:-1]) * 1e9
-                elif val.endswith('K'):
+                if val.endswith('K'):
                     return float(val[:-1]) * 1e3
             try:
                 return float(val)
-            except:
+            except Exception:
                 return None
         df['volume'] = df['volume'].apply(parse_volume)
 
@@ -78,6 +78,9 @@ def normalize_csv(input_path,source_type='yahoo'):
             .replace('%', '', regex=True)
             .astype(float)
         )
+
+    output_columns = ['symbol', 'price', 'price_change', 'price_percent_change', 'volume']
+    df = df[[col for col in output_columns if col in df.columns]]
 
     # Save normalized csv file under new file name
     output_path = os.path.splitext(input_path)[0] + "_norm" + os.path.splitext(input_path)[1]
