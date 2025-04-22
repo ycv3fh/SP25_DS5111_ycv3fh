@@ -5,11 +5,16 @@ import pandas as pd
 # Ensure path includes local package
 sys.path.append('.')
 from bin.gainers.factory import GainerFactory
-
-#from bin.gainers.wsj import GainerDownloadWSJ
+#Function to clean up files are test runs
+def cleanup_files(patterns):
+    for pattern in patterns:
+        for file in glob.glob(pattern):
+            try:
+                os.remove(file)
+            except Exception as e:
+                print(f"Warning: Failed to remove {file}: {e}")
 
 def test_yahoo_pipeline():
-    #remove files before testing
     print("Running WSJ pipeline test...")
     factory = GainerFactory("yahoo")
     downloader = factory.get_downloader()
@@ -30,6 +35,8 @@ def test_yahoo_pipeline():
     assert "symbol" in df.columns
     assert "price_percent_change" in df.columns
     assert df["price_percent_change"].dtype in [float, "float64"]
+
+    cleanup_files(["ygainers.html","ygainers.csv", "yahoo_gainers_*.csv"])
 
 def test_wsj_pipeline():
     #remove files before running tests
@@ -53,4 +60,4 @@ def test_wsj_pipeline():
     assert 'price_percent_change' in df.columns
     assert df['price_percent_change'].dtype == float
 
-
+    cleanup_files(["wsjgainers.html","wsjgainers.csv", "normalized_temp.csv", "bin/gainers/data/wsj_gainers_*.csv"])
