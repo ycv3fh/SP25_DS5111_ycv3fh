@@ -29,4 +29,4 @@ wsjgainers.csv: wsjgainers.html
 
 gainers:
 	. env/bin/activate;
-	python bin/get_gainer.py $(SRC)
+	python get_gainer.py $(SRC)

@@ -61,4 +61,4 @@ def test_wsj_pipeline():
     assert 'price_percent_change' in df.columns
     assert df['price_percent_change'].dtype == float
 
-    cleanup_files(["wsjgainers.html","wsjgainers.csv", "normalized_temp.csv", "bin/gainers/data/wsj_gainers_*.csv"])
+    cleanup_files(["wsjgainers.html","wsjgainers.csv", "normalized_temp.csv", "wsj_gainers_*.csv"])
