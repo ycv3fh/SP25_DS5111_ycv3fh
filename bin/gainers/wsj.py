@@ -55,6 +55,21 @@ class GainerProcessWSJ(GainerProcess):
         df['price_percent_change'] = pd.to_numeric(df['price_percent_change'], errors='coerce')
 
         # Normalize volume if present
+        def parse_volume(val):
+            try:
+                val = str(val).strip().replace(',', '')
+                if val.endswith('K'):
+                    return float(val[:-1]) * 1_000
+                elif val.endswith('M'):
+                    return float(val[:-1]) * 1_000_000
+                elif val.endswith('B'):
+                    return float(val[:-1]) * 1_000_000_000
+                return float(val)
+            except Exception as e:
+                print(f"Error parsing volume: {val} ({e})")
+                return None
+        df['volume'] = df['volume'].map(parse_volume)
+
         if 'volume' in df.columns:
             # If volume is in millions or billions, convert to the base unit
             df['volume'] = df['volume'].replace({

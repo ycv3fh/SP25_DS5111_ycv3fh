@@ -48,8 +48,11 @@ def normalize_csv(input_path,source_type='yahoo'):
 
     # Normalize price_percent_change
     if 'price_percent_change' in df.columns:
-        df['price_percent_change'] = df['price_percent_change'].replace('[%+]', '', regex=True).astype(float)
-
+        df['price_percent_change'] = (
+            df['price_percent_change']
+            .replace('[%+]', '', regex=True)
+            .astype(float)
+        )
     # Normalize volume strings like "99.3M" or "314.2K"
     if 'volume' in df.columns:
         def parse_volume(val):
@@ -63,7 +66,7 @@ def normalize_csv(input_path,source_type='yahoo'):
                     return float(val[:-1]) * 1e3
             try:
                 return float(val)
-            except Exception:
+            except (ValueError, TypeError):
                 return None
         df['volume'] = df['volume'].apply(parse_volume)
 
