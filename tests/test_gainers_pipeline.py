@@ -52,7 +52,7 @@ def test_wsj_pipeline():
     normalizer.normalize()
     normalizer.save_with_timestamp()
 
-    saved_files = glob.glob("bin/gainers/data/wsj_gainers_*.csv")
+    saved_files = glob.glob("wsj_gainers_*.csv")
     assert saved_files, "No WSJ gainer file saved with timestamp."
 
     assert not df.empty
