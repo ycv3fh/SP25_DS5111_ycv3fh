@@ -57,7 +57,7 @@ def test_wsj_pipeline():
 
     df = pd.read_csv(saved_files[-1])
     assert not df.empty
-    assert 'symbol' in df.columns
+    assert 'name' in df.columns
     assert 'price_percent_change' in df.columns
     assert df['price_percent_change'].dtype == float
 
