@@ -28,5 +28,4 @@ wsjgainers.csv: wsjgainers.html
 	. env/bin/activate; python -c "import pandas as pd; raw = pd.read_html('wsjgainers.html'); raw[0].to_csv('wsjgainers.csv')"
 
 gainers:
-	. env/bin/activate;
-	python get_gainer.py $(SRC)
+	. env/bin/activate; python get_gainer.py $(SRC)

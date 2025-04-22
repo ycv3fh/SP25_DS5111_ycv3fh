@@ -5,7 +5,6 @@ It takes user input, selects the appropriate factory-generated classes, and runs
 
 import sys
 from bin.gainers.factory import GainerFactory
-from bin.gainers.base import GainerProcess
 
 # TEMPLATE
 class ProcessGainer:
@@ -38,5 +37,5 @@ if __name__=="__main__":
     normalizer = factory.get_processor()
 
     # create our process
-    runner = GainerProcess(downloader, normalizer)
+    runner = ProcessGainer(downloader, normalizer)
     runner.process()
