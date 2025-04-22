@@ -55,6 +55,7 @@ def test_wsj_pipeline():
     saved_files = glob.glob("wsj_gainers_*.csv")
     assert saved_files, "No WSJ gainer file saved with timestamp."
 
+    df = pd.read_csv(saved_files[-1])
     assert not df.empty
     assert 'symbol' in df.columns
     assert 'price_percent_change' in df.columns
