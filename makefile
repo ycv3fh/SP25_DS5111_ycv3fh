@@ -29,3 +29,10 @@ wsjgainers.csv: wsjgainers.html
 
 gainers:
 	. env/bin/activate; python get_gainer.py $(SRC)
+
+clean_ygainers:
+	rm ygainers.html; rm ygainers.csv
+
+clean_wsjgainers:
+	rm wsjgainers.html; rm wsjgainers.csv
+
