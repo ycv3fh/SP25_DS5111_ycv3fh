@@ -1,5 +1,4 @@
 import os
-os.system(". env/bin/activate")
 os.system("make gainers SRC=yahoo")
 os.system("make gainers SRC=wsj")
 os.system("mv yahoo_gainers* data_collected")

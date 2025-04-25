@@ -31,8 +31,8 @@ gainers:
 	. env/bin/activate; python get_gainer.py $(SRC)
 
 clean_ygainers:
-	rm ygainers.html; rm ygainers.csv
+	rm ygainers.html || true; rm ygainers.csv || true
 
 clean_wsjgainers:
-	rm wsjgainers.html; rm wsjgainers.csv
+	rm wsjgainers.html || true; rm wsjgainers.csv || true
 
