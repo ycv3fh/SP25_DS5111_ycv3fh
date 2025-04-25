@@ -2,7 +2,7 @@ import platform
 import sys
 
 #Check  OS
-def check_linux():
+def test_check_linux():
     assert platform.system() == "Linux", "Error: This script must be run on Linux."
 
 # Check Python version
