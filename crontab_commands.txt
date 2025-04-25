@@ -1,0 +1,15 @@
+#This text file contains the command lines used within the crontab to collect data
+6 17 * * * cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+#* * * * * cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; which python > running_python;  python collect_data.py
+12 09 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+47 09 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+03 10 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+29 10 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+51 10 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+08 11 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+33 11 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+57 11 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+14 13 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+36 13 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+55 13 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
+20 14 * * 1-5 cd /home/ubuntu/SP25_DS5111_ycv3fh; . env/bin/activate; python collect_data.py
