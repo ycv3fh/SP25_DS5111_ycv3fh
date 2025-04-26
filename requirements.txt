@@ -5,4 +5,5 @@ pylint==3.3.6
 pytest==8.3.5
 beautifulsoup4==4.13.4
 # would be good if we could lock these down with version numbers
-
+dbt-core
+dbt-snowflake
