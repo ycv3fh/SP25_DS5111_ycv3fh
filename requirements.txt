@@ -1,7 +1,8 @@
-pandas
-lxml
-html5lib
-pylint
-pytest
-beautifulsoup4
+pandas==2.2.3
+lxml==5.3.1
+html5lib==1.1
+pylint==3.3.6
+pytest==8.3.5
+beautifulsoup4==4.13.4
 # would be good if we could lock these down with version numbers
+
