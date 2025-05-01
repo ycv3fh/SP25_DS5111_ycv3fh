@@ -12,7 +12,7 @@
 
 The raw html is pulled from the web and then the table info is isolated and converted into a csv file. This is then normalized by formatting the columns and removing unnecessary columns. Then when inputing into the database, each entry is split into two datasets that are linked. One is the name and ticker symbol while the other has the numerical data that includes the volume, last trade, change, and percent change.
 
-* Summary (Another short paragraph)
+* Summary 
 
 Seperating the company from the price info give flexiblity to analysize the stock gainers. This will help identify patterns like frequently occuring symbols and and diving the gainers based on price ranges. This will help in creating better hypothesis generation for short term trading.
 This can then be built into merging with additional data to expand the anaysis.
