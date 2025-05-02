@@ -17,7 +17,7 @@ The raw html is pulled from the web and then the table info is isolated and conv
 Seperating the company from the price info give flexiblity to analysize the stock gainers. This will help identify patterns like frequently occuring symbols and and diving the gainers based on price ranges. This will help in creating better hypothesis generation for short term trading.
 This can then be built into merging with additional data to expand the anaysis.
 
-```
+```mermaid
 erDiagram
     COMPANY ||--o{ TICKER : has
     TICKER ||--o{ PRICE_RECORD : logs
